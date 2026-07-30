@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Образовательный портал</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- БЛОК С ЗАЩИТОЙ (показывается если доступ запрещен) -->
+    <div id="blocked-page" style="display: none;">
+        <div
+            style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; padding: 20px; text-align: center; background: #f5f0eb; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
+            <div
+                style="max-width: 500px; padding: 40px; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                <h1 style="color: #721c24; font-size: 48px; margin-bottom: 16px;">🚫</h1>
+                <h2 style="color: #721c24; margin-bottom: 16px;">Доступ запрещен</h2>
+                <p id="blocked-message" style="color: #555; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">
+                    Пожалуйста, пройдите авторизацию.</p>
+                <a href="../index.html"
+                    style="display: inline-block; padding: 12px 32px; background: #6a1b9a; color: white; text-decoration: none; border-radius: 12px; font-weight: 500; transition: all 0.3s ease;">Вернуться
+                    на главную</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ (показывается если доступ разрешен) -->
+    <div id="app-content" style="display: none;">
+        <div class="app">
+            <!-- Левая панель с уроками -->
+            <nav class="sidebar" id="sidebar">
+                <!-- Кнопка закрытия панели -->
+                <button class="sidebar-toggle sidebar-close" id="sidebarClose" aria-label="Закрыть панель">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+
+                <div class="sidebar-header">
+                    <h2>📚 Уроки</h2>
+                    <p class="subtitle">Выберите раздел</p>
+                </div>
+
+                <div class="menu">
+                    <button class="menu-item active" data-lesson="0">
+                        <span class="icon">📄</span>
+                        Титульный лист
+                    </button>
+                    <button class="menu-item" data-lesson="1">Урок 1</button>
+                    <button class="menu-item" data-lesson="2">Урок 2</button>
+                    <button class="menu-item" data-lesson="3">Урок 3</button>
+                    <button class="menu-item" data-lesson="4">Урок 4</button>
+                    <button class="menu-item" data-lesson="5">Урок 5</button>
+                    <button class="menu-item" data-lesson="6">Урок 6</button>
+                    <button class="menu-item" data-lesson="7">Урок 7</button>
+                    <button class="menu-item" data-lesson="8">Урок 8</button>
+                    
+                </div>
+
+                <div class="sidebar-footer">
+                    <button class="logout-btn" onclick="logout()">🚪 Выйти</button>
+                </div>
+            </nav>
+
+            <!-- Правая панель с контентом -->
+            <main class="content" id="mainContent">
+                <!-- Кнопка открытия панели (показывается когда панель скрыта) -->
+                <button class="sidebar-toggle sidebar-open" id="sidebarOpen" aria-label="Открыть панель">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+
+                <!-- Блоки с материалами -->
+                <div class="lesson-content" id="lesson-0">
+                    <h1>📄 Титульный лист</h1>
+                    <div class="content-body">
+                        <h2>Индивидуальный курс онлайн: "Бухучет для руководителя"</h2>
+
+                        <!-- ИНФОРМАЦИОННЫЙ БЛОК С КАРТИНКОЙ -->
+                        <div class="info-block">
+                            <div class="info-text">
+                                <p class="info-text-item">Здесь можно задавать вопросы преподавателю по темам и
+                                    заданиям, обмениваться опытом и обсуждать вопросы по теме курса, сообщать о
+                                    возникших проблемах при практической работе. Задавать дополнительные вопросы.</p>
+
+                                <p>Обучение идет по программе на примере сквозной задачи.</p>
+                                <p>👨 Доступ к программе 1С круглосуточно, поэтому Вы можете работать 24 часа в сутки.
+                                </p>
+                                <p>Видеоуроки будут доступны 7,5 месяца. На электронную почту Вам высланы конспекты по
+                                    темам.</p>
+                                <p>Преподаватель отвечает на вопросы по темам курса и на дополнительные вопросы.</p>
+                                <p>График ответов преподавателя: пн-пт, 9:00-20:00. Вопросы можно писать в Viber по мере
+                                    поступления.</p>
+                                <p>Ответы преподаватель дает в рабочие дни.</p>
+
+                                <div class="info-not-included">
+                                    <p class="not-included-title"><strong>Что не входит в курс:</strong></p>
+                                    <ul class="not-included-list">
+                                        <li>Преподаватель не помогает Вам в работе Ваших организаций:</li>
+                                        <li>☑ закрывать декларации и отчетность;</li>
+                                        <li>☑ рассчитывать больничные, отпускные, зарплату, налоги;</li>
+                                        <li>☑ работать в Ваших программах 1С.</li>
+                                    </ul>
+                                </div>
+
+                                <p class="comfort-text">Мы хотим, чтобы вам было комфортно общаться и обучаться.</p>
+
+
+                            </div>
+
+                            <div class="info-image">
+                                <img src="profile.jpg" alt="Преподаватель">
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <strong>📌 Всего уроков:</strong> 14 + Самостоятельная работа
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-1">
+                    <h1>📚 Урок 1</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 48px; margin-bottom: 16px;">Введение.</h2>
+                        <h3 style="color: #1e4b00; font-size: 36px; margin-bottom: 16px;"> Понятие бухгалтерского учета,
+                            проводки. Расчеты с учредителями. Уставный капитал.</h3>
+                        <div class="les1">
+
+                            <p>Ориентируйтесь по инструкции и делайте всё по ним. По всем вопросам пишите сюда, я всегда
+                                рядом.</p>
+                            <p> В понедельник, среда и пятница я на занятиях до 15-00 и не сразу смогу ответить, но вы
+                                не переживайте, как освобождаюсь,
+                                сразу отвечаю, поэтому пишите в любое время.</p>
+                            <p>Сейчас буду сбрасывать информацию для работы, к некоторым урокам будет дополнительная
+                                информация,
+                                не забывайте ее читать.</p>
+                            <p> Выполнять будите, когда будет у Вас время, но за неделю надо успевать сделать урока
+                                два-три.</p>
+                            <p>Видео Уроки будут состоять из несколько частей, например 1-1, 1-2 и так далее. Делаем всё
+                                по возрастанию.</p>
+
+                            <div class="image-text-row">
+                                <div class="image-left-col">
+                                    <a href="https://drive.google.com/file/d/1scUR7OpqvZiw3YoZQp2AtQ9BzzQKiU8k/view?usp=sharing"
+                                        >
+                                        <img src="pictures/1-1.png" alt="урок 1-1">
+                                    </a>
+                                                                    </div>
+                                <div class="text-right-col">
+                                    <p>Теория бухучета</p>
+
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="image-text-row">
+                                <div class="image-left-col">
+                                    <a href="https://drive.google.com/file/d/1R4YIk7aO7B6bHS-Hqjo0nMA4OkUD067t/view"
+                                        >
+                                        <img src="pictures/1-2.png" alt="урок 1-2">
+                                    </a>
+<p style="font-size: 20px !important; ">Практика в программе 1С. Делаем все, как на
+                                        видео</p>
+                                </div>
+                                <div class="text-right-col">
+<p> На эл.почту Вам отправили пароли и видео, как подключить удаленный доступ к
+                                        программе 1С</p>
+<p style="color: red; ">С урока 1-2, смотрим и делаем всё так же, как на видео.
+                                        Ставим то же число и месяц, как на видео, но год у нас всегда будет текущий
+                                        2026г</p>
+<p>По видео мы всегда будем проверять, как должно быть, если у Вас все так же,
+                                        можете приступать к следующему видео. </p>
+<p> Я периодически буду заходить к Вам в программу 1С и давать отчёт о Вашей
+                                        проделанной работе. Надо будет помощь, сразу зовите.</p>
+
+
+
+                                                                    </div>
+                            </div>
+		
+
+                            <hr>
+
+                            <div class="image-text-row">
+                                <div class="image-left-col">
+                                    <a href="https://drive.google.com/file/d/1Tri1uYamEheQux92Gq119Y45MyG7xJGl/view"
+                                        >
+                                        <img src="pictures/1-3.png" alt="урок 1-3">
+                                    </a>
+                                    <p>Самостоятельная работа</p>
+                                </div>
+                                <div class="text-right-col">
+                                    <p>Урок 1-3 самостоятельная работа, первое задание делаем вместе, потом пытаемся
+                                        сделать самостоятельно, затем проверяем.</p>
+                                    <p>Заходим на скаченные уроки с эл.почты: урок 1 - Теория - Двойная запись и в самом
+                                        конце практическая работа и там её заполняем, в 1С делать этого не надо.</p>
+
+                                </div>
+
+
+
+                            </div>
+                            <hr>
+                            <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+                            <p>Вы закончили первый урок, если у Вас так же, как у нас, переходите смело ко второму
+                                уроку. </p>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-2">
+                    <h1>📚 Урок 2</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 48px; margin-bottom: 16px;">Учет основных средств. Учет
+                            нематериальных активов.</h2>
+
+                                                <p style="color: red;">Ставим то же число и месяц, как на видео, но год у нас всегда будет
+                            текущий 2026г</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1kMENSVZaJtMH1QiGY15RTLGBgt9lrv-n/view"
+                                   >
+                                    <img src="pictures/2-1.png" alt="урок 2-1">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p style="font-size: 20px !important; ">В уроке 2-2 контрагент автоматически сейчас не
+                                    выставляется,
+                                    поэтому наименование организации пишем руками, можно сокращать, см.картинку
+                                </p>
+                                <a href="https://drive.google.com/file/d/1KmCD5_StJWXJPHMbPO5TP2Zdtcgd6qvS/view?usp=drive_link"
+                                    style="font-size: 20px;"> рис1</a>
+                                <a style="font-size: 20px;"> Адрес пишите просто г. Минск.В учебной программе можем себе
+                                    позволить.</a>
+                                <p> <a href="https://drive.google.com/file/d/17YzBGA8XB5moJMAIAst446vECSx4imZr/view?usp=sharing"
+                                         style="font-size: 20px;">рис2</a></p>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <p style="margin-top: 20px;">Дальше по порядку</p>
+                        <div style="display: flex; gap: 100px; flex-wrap: wrap; margin: 10px 0;">
+
+                            <a href="https://drive.google.com/file/d/1nIbMb4AJyilUWZaXcSs-uUegj8_K4J2D/view"
+                                 style="display: block; flex: 0 0 auto;">
+                                <img src="pictures/2-2.png" alt="урок 2-2"
+                                    style="width: 300px; height: auto; border-radius: 12px; display: block; box-shadow: 0 4px 16px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+                            </a>
+                            <a href="https://drive.google.com/file/d/1hKy8C9VDg0Wymzup9RHKqcx3_1_HAhKE/view"
+                                style="display: block; flex: 0 0 auto;">
+                                <img src="pictures/2-3.png" alt="урок 2-3"
+                                    style="width: 300px; height: auto; border-radius: 12px; display: block; box-shadow: 0 4px 16px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+                            </a>
+                            <a href="https://drive.google.com/file/d/1vT8SRIzQDbyW8n-DrE_bxkRYa-uNFDrb/view"
+                                 style="display: block; flex: 0 0 auto;">
+                                <img src="pictures/2-4.png" alt="урок 2-4"
+                                    style="width: 300px; height: auto; border-radius: 12px; display: block; box-shadow: 0 4px 16px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+                            </a>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+                    <p style="font-size: 20px;">Вы закончили второй урок, если у Вас так же, как у нас переходите смело
+                        к следующему уроку.</p>
+                </div>
+
+
+                <div class="lesson-content" id="lesson-3">
+                    <h1>📚 Урок 3</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 30px; margin-bottom: 16px;">Учет товарно-материальных
+                            ценностей:
+                            учет сырья, учет инвентаря и хоз. принадлежностей, учет спецодежды, учет топлива, учет
+                            прочих материалов, учет БСО.
+                        </h2>
+                       
+                        <p style="color: red;">Ставим то же число и месяц, как на видео, но год у нас всегда будет
+                            текущий 2026г </p>
+
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/14XaDMTZEgXMIbRC8JRq2toKZevT29s-k/view"
+                                   >
+                                    <img src="pictures/3-1.png" alt="урок 3-1">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p>
+                                    С 1 июля 2025г. НСБУ № 88 изменился учет БСО. Списывать с баланса будем только по
+                                    факту использованные ТН и ТТН.
+                                    На забалансовом счете 006 будем учитывать только испорченные БСО (можно открыть
+                                    новый субсчет к 006 счету - "испорченные БСО").
+                                    ИМНС советует все испорченные бланки до 01.07.25г. отразить на 006 счете.
+                                    Испорченные БСО мы сможем уничтожить только через месяц после проверки со стороны
+                                    ИМНС.
+                                    По новому правилу надо вести реестры использованных и испорченных(анулированных)
+                                    бланков. Образцы реестров смотрите в 3уроке - Теория - БСО.
+                                    <p>Срок и условия хранения испорченных бланков (документов) с определенной степенью защиты Национальным стандартом № 88 не установлены.
+                                      Срок хранения таких документов и дел целесообразно установить на заседании экспертной комиссии организации </p>
+                                    <a href="https://drive.google.com/file/d/1hIsTj_hrMIRzwIaWnX2TolhfjjDHyJJ0/view?usp=sharing"
+                                         style="font-size: 20px;"> </p> <p>Алгоритм уничтожения бланков строгой
+                                        отчетности</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/16gXzWJ4DXcjJLliuZrb65dp8tisP4cGa/view"
+                                   >
+                                    <img src="pictures/3-2.png" alt="урок 3-2">
+                                </a>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1RP63n731xoN8kbGxS922Z5X2IMQci64z/view"
+                              >
+                                    <img src="pictures/3-3.png" alt="урок 3-3">
+                                </a>
+                            </div>
+                        </div>
+
+                        <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+                        <p style="font-size: 20px;">Вы закончили третий урок, если у Вас так же, как у нас переходите
+                            смело к следующему уроку.</p>
+
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-4">
+                    <h1>📚 Урок 4</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 40px; margin-bottom: 16px;"> Учет товара: поступление,
+                            оценка, реализацият</h2>
+                        <h2 style="color: #1e4b00; font-size: 40px; margin-bottom: 16px;">Учет услуг: поступление,
+                            реализация</h2>
+
+                       
+                        <p style="color: red;">Ставим то же число и месяц, как на видео, но год у нас всегда будет
+                            текущий 2026г </p>
+
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/10INj_taojp6ecNQwdZXlPXxYo3DvEzH_/view"
+                                    >
+                                    <img src="pictures/4-1.png" alt="урок 4-1">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p style="color: rgb(107, 41, 41); font-size: 20px !important;"> С15.04.25 принцип
+                                    расчета по ценообразованию
+                                    другой.</p>
+                                <p>
+                                    Вступило новое постановление 713(6), с уменьшенным списком товара.
+                                    1 колонка - процент на импортируемый потребительский товар.
+                                    Этот размер надбавки делится между всеми звеньями торговли (импортером, оптом и
+                                    розницей).
+                                    2 колонка - процент на производимые в Республике Беларусь потребительские товары.
+                                    Этот размер надбавки делится между звеньями торговли (оптом и розницей).С 19.07.2026г. постановление №359 еще уменьшила список товара до 76 наименований. 					                                </p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1ztyS5d7TApDtqQdavmubyogD7rGQ94rH/view"
+                                    >
+                                    <img src="pictures/4-2.png" alt="урок 4-2">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p style="color: red; font-size: 20px !important;"> Инструкция к уроку 4-3: когда будите
+                                    делать счёт на реализацию услуг,
+                                    надо в левом вверхнем углу зайти в "Цены и валюта" и выставить тип цен "Оптовая".
+                                   Иначе НДС будет считать не сверху, а в том числе.
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+
+
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/18K26MND0z_mZEU7lM3ak855G9TSeVrKp/view"
+                                    >
+                                    <img src="pictures/4-3.png" alt="урок 4-3">
+                                </a>
+                            </div>
+                        </div>
+                        <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+                        <p style="font-size: 20px;">Вы закончили четвертый урок, если у Вас так же, как у нас переходите
+                            смело к следующему уроку.</p>
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-5">
+                    <h1>📚 Урок 5</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 48px; margin-bottom: 16px;">Учет расчетов с поставщиками и
+                            подрядчиками, взаимозачеты </h2>
+
+
+                        <p style="color: red;">Ставим то же число и месяц, как на видео, но год у нас всегда будет
+                            текущий 2026г </p>
+
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1dGxmGI_x1c3UuXboJPJM_ItbzsLar-2E/view"
+                                    >
+                                    <img src="pictures/5.png" alt="урок 5">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p>
+                                    По взаимозачетам в 2026 году. С 1 января 2023 г. на территории Республики Беларусь
+                                    при осуществлении предпринимательской деятельности в отношении всех товаров,
+                                    в том числе потребительских, запрещаются товарообменные операции без поступления в
+                                    установленном порядке денежных средств юридическому лицу, ИП(бартер, мена,
+                                    взаимозачет), за исключением:
+                                </p>
+                                <li> внешнеторговых операций;</li>
+                                <li> операции, определенные в перечнях облисполкомов и Минского горисполкома (ч.1 п.14
+                                    постановления № 713). </li>
+                                <p> Предоставить право облисполкомам и Минскому горисполкому определять перечни
+                                    товарообменных операций,
+                                    которые должны содержать предметы товарообменной операции (товары, работы, услуги),
+                                    а также наименования юридических лиц, между которыми могут осуществляться
+                                    товарообменные операции на основании соответствующего перечня.
+                                </p>
+                            </div>
+                        </div>
+
+                        <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+                        <p style="font-size: 20px;">Вы закончили пятый урок, если у Вас так же, как у нас переходите
+                            смело к следующему уроку.</p>
+
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-6">
+                    <h1>📚 Урок 6</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 48px; margin-bottom: 16px;">Учет денежных средств:</h2> 
+                          <h2 style="color: #1e4b00; font-size: 48px; margin-bottom: 16px;">Учет
+                            кассовых операций</h2>
+                        <h2 style="color: #1e4b00; font-size: 48px; margin-bottom: 16px;"> Учет операций по расчетному
+                            счету.</h2>
+
+                      
+                        <p style="color: red;">Ставим то же число и месяц, как на видео, но год у нас всегда будет
+                            текущий 2026г </p>
+
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1dwP9A1fygkaworNstAZQ3mUqIghbIJv-/view"
+                                    >
+                                    <img src="pictures/6-1.png" alt="урок 6-1">
+                                </a>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/10F8_7w3UXkY7rY6nPUpzz6rAElORtXyc/view"
+                                   >
+                                    <img src="pictures/6-2.png" alt="урок 6-2">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p style="color: red;">
+                                                                     
+                                    С 4 апреля 2026 года в Республике Беларусь вступило в силу изменения в Положении о
+                                    служебных командировках (согласно постановлению Совета Министров № 135 от 23 марта
+                                    2026 года),
+                                    которые касаются суточных, проживания:
+                                    <li> 1.Суточные (внутри РБ) <a style="font-style: normal !important;">Увеличение
+                                            суммы: Размер суточных при командировках внутри Беларуси вырастет с 12 до 13
+                                            рублей в сутки.</a></li>
+                                    <li> 2. Проживание (найм жилья) <a style="font-style: normal !important;">С 4 апреля
+                                            2026 года возмещение расходов на проживание в другом населенном пункте
+                                            производится только на основании подтверждающих документов (чеков, квитанций).</a></li>
+ <li> 3. Проживание (найм жилья) <a style="font-style: normal !important;">При отсутствии подтверждающих документов, представление которых для возмещения расходов по найму жилого помещения 								
+определено в локальном правовом акте, указанные расходы за время командирования, за исключением времени нахождения в пути, 								возмещаются в размере, не превышающем 20 %, но не менее 5 % размеров возмещения этих расходов, установленных				
+ в приложении 2 к Положению № 176.								</a></li>
+
+
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <p style="line-height: 24px!important; color: #1e4b00;">
+                            Надо сделать самостоятельно работу, она находится у вас на электронной почте в шестом уроке
+                            - практическая работа - учёт денежных средств.<br>
+                            Надо правильно указать дебет кредит по 50 счёту, а потом по 51 счету.<br>
+                            Когда сделаете, открываете видео урок и проверяете. Ссылка на видео с домашним заданием ниже:
+                        </p>
+
+                        <a href="https://drive.google.com/file/d/1q1d81BKdT_nmmjeR11rWUmdwNBs5QEj6/view" 
+                            style="color: #721c24; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 36px;">ДЗ</a>
+                        <hr>
+                        <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+                        <p style="font-size: 20px;">Вы закончили шестой урок, если у Вас так же, как у нас переходите
+                            смело к следующему уроку.</p>
+
+
+
+
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-7">
+                    <h1>📚 Урок 7</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 48px; margin-bottom: 16px;">Переходите на 8 урок</h2>
+                        <h2 style="color: #1e4b00; font-size: 48px; margin-bottom: 16px;">Здесь урока нет</h2>
+
+                      
+                        <hr>
+                       
+                 </div>
+
+                </div>
+
+                <div class="lesson-content" id="lesson-8">
+                    <h1>📚 Урок 8</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 48px; margin-bottom: 16px;">"Бухгалтерский учет в
+                            производстве"</h2>
+
+
+                        <p style="color: red;">Ставим то же число и месяц, как на видео, но год у нас всегда будет
+                            текущий 2026г </p>
+                        <p class="lesNum">Урок 8-1</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1eKRPRWb34eWHsWJDIIB4AVTFLlo9ApRn/view"
+                                  >
+                                    <img src="pictures/8.png" alt="урок 8-1">
+                                </a>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <p class="lesNum">Урок 8-2</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1oBW_fcQZwRX0kkT5ChdP8Q-I0XyZbfBx/view"
+                                  >
+                                    <img src="pictures/8.png" alt="урок 8-2">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p>В уроке 8-2 на видео мы будем продавать готовую продукцию ООО "Скиф", у вас такого
+                                    контрагента нет, поэтому вы продавайте ООО "Аромабелторг".
+                                    В конце видео будем показывать, как сделать не вручную, а автоматизировано
+                                    производство, белое платье в программе делать не надо.
+                                </p>
+                            </div>
+                        </div>
+                        <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+                        <p style="font-size: 20px;">Вы закончили восьмой урок, если у Вас так же, как у нас переходите
+                            смело к следующему уроку.</p>
+                    </div>
+                </div>
+
+            </main>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
