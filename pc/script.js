@@ -29,7 +29,7 @@ function validateAccess() {
     
     // Проверка 1: есть ли фамилия
     if (!surname) {
-        console.log('❌ Нет фамилии в сессии');
+        console.log('❌ Нет пароля в сессии');
         return false;
     }
     
